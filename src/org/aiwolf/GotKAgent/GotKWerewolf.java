@@ -21,6 +21,10 @@
 /*----------------------------------------------------------------------------------------------*/
 package org.aiwolf.GotKAgent;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.aiwolf.client.base.player.AbstractWerewolf;
 import org.aiwolf.common.data.Agent;
 
@@ -53,16 +57,34 @@ public class GotKWerewolf extends AbstractWerewolf {
 		return null;
 	}
 
+	/*-------------------------------------------------------------------------------------------*/
+	/*  メソッド名：vote													 				     */
+	/*	投票する相手を選択するときに呼ばれるメソッド 										 	 */
+	/*-------------------------------------------------------------------------------------------*/
 	@Override
-	public Agent vote() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	public Agent vote()
+	{
+		List<Agent> voteCandidates = new ArrayList<Agent>();
+		voteCandidates.addAll(getLatestDayGameInfo().getAliveAgentList());
+		voteCandidates.remove(getMe());
+
+		return randomSelect(voteCandidates);
 	}
 
 	@Override
 	public String whisper() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
+	}
+
+	/*-------------------------------------------------------------------------------------------*/
+	/*  メソッド名：randomSelect													 			 */
+	/*	ランダムにプレイヤーを選択するときに呼ばれるメソッド 									 */
+	/*-------------------------------------------------------------------------------------------*/
+	private Agent randomSelect(List<Agent> agentList)
+	{
+		int num = new Random().nextInt(agentList.size());
+		return agentList.get(num);
 	}
 
 }
