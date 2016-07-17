@@ -8,17 +8,22 @@ public class GotKRoleAssignPlayer extends AbstractRoleAssignPlayer
 	/*	振り分けられた役職の呼出クラス								   */
 	/*-----------------------------------------------------------------*/
 
-	// 占い師の呼出
 	public GotKRoleAssignPlayer()
 	{
-		setSeerPlayer(new GotKSeer());
+		setSeerPlayer(new GotKSeer());//占い師
+		setBodyguardPlayer(new GotKBodyguard());//狩人
+		setMediumPlayer(new GotKMedium());//霊媒師
+		setPossessedPlayer(new GotKPossessed());//狂人
+		setWerewolfPlayer(new GotKWerewolf());//人狼
+		setVillagerPlayer(new GotKVillager());//村人
 	}
+
 	@Override
 	public String getName()
 	{
 		// TODO 自動生成されたメソッド・スタブ
 
-		return null;
+		return "GotK";
 	}
 
 }
